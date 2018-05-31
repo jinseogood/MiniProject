@@ -3,22 +3,36 @@ package project.view;
 import java.awt.Color;
 import java.awt.Image;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import project.controller.HumanMove;
+
 public class GameView extends JPanel{
-	public GameView(){
-		this.setSize(1138, 500);
-		
-		Image icon = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 100); //ÀÌ¹ÌÁö¾ÆÀÌÄÜÀ¸·Î¸¸µå´Â°ÍÀÌÁ»´õÆíÇÔ
-		
-		JLabel label = new JLabel(new ImageIcon(icon));
-		
-		label.setSize(1138, 500);
-		//label.setLayout(null);
+
+	private int x=550;
+	private int y=330;
+	
+	public GameView(MainFrame mf){
+		this.setSize(1138, 502);
+		this.setLayout(null);
+		Image img=new ImageIcon("images/player.gif").getImage().getScaledInstance(100, 100, 0);
+		JLabel label=new JLabel(new ImageIcon(img));
+    Image backgroundImg = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 100); //ì´ë¯¸ì§€ì•„ì´ì½˜ìœ¼ë¡œë§Œë“œëŠ”ê²ƒì´ì¢€ë”í¸í•¨
+		JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImg));
+		label.setBounds(x, y, 100, 100);
+    backgroundLabel.setSize(1138, 500);
+		HumanMove test=new HumanMove(/*mf,*/x,y);
+		test.Move(mf);
 		
 		this.add(label);
+    this.add(backgroundLabel);
+		this.setBackground(Color.GREEN);
 	}
 	
 }

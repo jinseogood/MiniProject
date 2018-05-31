@@ -48,7 +48,7 @@ public class MainMenu extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mf.remove(m); 
-				panel=new GameView();
+				panel=new GameView(mf);
 				mf.add(panel);
 				mf.repaint();
 				
