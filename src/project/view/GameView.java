@@ -21,14 +21,14 @@ public class GameView extends JPanel{
 	public GameView(MainFrame mf){
 		this.setSize(1138, 500);
 		this.setLayout(null);
-		Image img=new ImageIcon("images/player.gif").getImage().getScaledInstance(90, 80, 0);
+		Image img=new ImageIcon("images/player2.gif").getImage().getScaledInstance(90, 80, 0);
 		JLabel label=new JLabel(new ImageIcon(img));
 		Image backgroundImg = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 100); 
 		JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImg));
 		label.setBounds(x, y, 100, 155);
 		backgroundLabel.setSize(1138, 462);
-		HumanMove test=new HumanMove(/*mf,*/x,y);
-		test.Move(mf);
+		HumanMove test=new HumanMove(label,x,y);
+		test.Move(mf, this);
 
 		this.add(label);
 		this.add(backgroundLabel);
