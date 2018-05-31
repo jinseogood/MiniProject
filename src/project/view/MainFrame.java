@@ -7,7 +7,7 @@ public class MainFrame extends JFrame{
 	private JPanel mainPanel;
 	//1138x462
 	public MainFrame(){
-		this.setTitle("ÀÎ»ý ÇÑ¹æ !");
+		this.setTitle("");
 
 		this.setSize(1138, 500);
 
