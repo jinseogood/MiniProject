@@ -8,7 +8,7 @@ public class MainFrame extends JFrame{
 	//1138x462
 	public MainFrame(){
 		this.setTitle("인생 한방 !");
-		this.setSize(1138, 462);
+		this.setSize(1138, 500);
 		
 		mainPanel=new MainMenu(this);
 		this.add(mainPanel);
