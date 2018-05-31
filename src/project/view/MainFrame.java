@@ -7,8 +7,10 @@ public class MainFrame extends JFrame{
 	private JPanel mainPanel;
 	//1138x462
 	public MainFrame(){
-		this.setTitle("�λ� �ѹ� !");
-		this.setSize(1138, 502);
+		this.setTitle("ÀÎ»ý ÇÑ¹æ !");
+
+		this.setSize(1138, 500);
+
 		
 		mainPanel=new MainMenu(this);
 		this.add(mainPanel);
