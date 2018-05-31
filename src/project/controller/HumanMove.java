@@ -5,38 +5,45 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import project.view.MainFrame;
 
 public class HumanMove {
-	//private MainFrame mf;
+	private JLabel label;
 	private int x;
 	private int y;
 
-	public HumanMove(/*MainFrame mf,*/ int x, int y){
-		//this.mf=mf;
+	public HumanMove(JLabel label, int x, int y){
+		this.label=label;
 		this.x=x;
 		this.y=y;
 	}
 
-	public void Move(MainFrame mf){
-		System.out.println("asdfasdf");
-		System.out.println("x : " + x + "y : " + y);
+	public void Move(MainFrame mf, JPanel panel){		
 		mf.addKeyListener(new KeyAdapter(){
-			
+
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				System.out.println(e.getKeyCode());
 				if(e.getKeyCode()==KeyEvent.VK_LEFT){
-					x-=50;
-					System.out.println("aaaaa");
-					mf.repaint();
+
+					if(x>0){
+						x-=20;
+						label.setLocation(x, y);
+					}
+				}
+
+				if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+
+					if(x<1015){
+						x+=20;
+						label.setLocation(x, y);
+					}
 				}
 			}
 
 		});
-		System.out.println("eeeeee");
 	}
 
 }
