@@ -21,7 +21,7 @@ public class RankingView extends JPanel {
 		
 		JLabel label = new JLabel(new ImageIcon(icon));
 		
-		label.setSize(1138, 500);
+		label.setSize(1138, 462);
 		//label.setLayout(null);
 		
 		btnReturn=new JButton();
@@ -45,8 +45,8 @@ public class RankingView extends JPanel {
 		});
 		
 		
-		this.add(label);
 		label.add(btnReturn);
+		this.add(label);
 	}
 
 	

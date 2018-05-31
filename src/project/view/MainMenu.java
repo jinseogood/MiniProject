@@ -78,10 +78,10 @@ public class MainMenu extends JPanel {
 			
 		});
 		
-		this.add(label);
 		label.add(btnStart);
 		label.add(btnRank);
 		label.add(btnExit);
+		this.add(label);
 		
 	}
 
