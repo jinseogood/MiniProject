@@ -47,7 +47,7 @@ public class MainMenu extends JPanel {
 		lbRank.setLocation(480, 290);
 		lbExit.setLocation(660, 290);
 
-		Image icon = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 100); //이미지아이콘으로만드는것이좀더편함
+		Image icon = new ImageIcon("images/mainbg.PNG").getImage().getScaledInstance(1138, 462, 100); //이미지아이콘으로만드는것이좀더편함
 		JLabel label = new JLabel(new ImageIcon(icon));
 
 		lbStart.addMouseListener(new MouseAdapter() {
