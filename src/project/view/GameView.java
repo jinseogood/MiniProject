@@ -25,12 +25,12 @@ public class GameView extends JPanel{
 		JLabel playerLabel=new JLabel(new ImageIcon(playerImg));
 		Image backgroundImg = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 0); 
 		JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImg));
-		Image timerImg=new ImageIcon("images/timer5.gif").getImage().getScaledInstance(141, 484, 0);
+		Image timerImg=new ImageIcon("images/timer.gif").getImage().getScaledInstance(51, 51, 0);
 		JLabel timerLabel=new JLabel(new ImageIcon(timerImg));
 		
 		playerLabel.setBounds(x, y, 100, 155);
 		backgroundLabel.setSize(1138, 462);
-		timerLabel.setBounds(10, 0, 141, 484);
+		timerLabel.setBounds(550, 0, 51, 51);
 		
 		HumanMove human=new HumanMove(playerLabel,x,y);
 		human.Move(mf, this);

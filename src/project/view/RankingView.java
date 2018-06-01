@@ -68,7 +68,7 @@ public class RankingView extends JPanel {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e){
-				mf.remove(m.getPanel());
+				mf.remove(r);
 				panel=new MainMenu(mf);
 				mf.add(panel);
 				mf.repaint();
