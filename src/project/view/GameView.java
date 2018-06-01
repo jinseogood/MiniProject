@@ -15,22 +15,28 @@ import project.controller.HumanMove;
 
 public class GameView extends JPanel{
 
-	private int x=550;
+	private int x=530;
 	private int y=330;
 
 	public GameView(MainFrame mf){
 		this.setSize(1138, 500);
 		this.setLayout(null);
-		Image img=new ImageIcon("images/player2.gif").getImage().getScaledInstance(90, 80, 0);
-		JLabel label=new JLabel(new ImageIcon(img));
-		Image backgroundImg = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 100); 
+		Image playerImg=new ImageIcon("images/player2.gif").getImage().getScaledInstance(90, 80, 0);
+		JLabel playerLabel=new JLabel(new ImageIcon(playerImg));
+		Image backgroundImg = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 0); 
 		JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImg));
-		label.setBounds(x, y, 100, 155);
+		Image timerImg=new ImageIcon("images/timer5.gif").getImage().getScaledInstance(141, 484, 0);
+		JLabel timerLabel=new JLabel(new ImageIcon(timerImg));
+		
+		playerLabel.setBounds(x, y, 100, 155);
 		backgroundLabel.setSize(1138, 462);
-		HumanMove test=new HumanMove(label,x,y);
-		test.Move(mf, this);
+		timerLabel.setBounds(10, 0, 141, 484);
+		
+		HumanMove human=new HumanMove(playerLabel,x,y);
+		human.Move(mf, this);
 
-		this.add(label);
+		this.add(timerLabel);
+		this.add(playerLabel);
 		this.add(backgroundLabel);
 	}
 
