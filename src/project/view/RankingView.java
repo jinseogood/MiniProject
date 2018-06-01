@@ -14,7 +14,8 @@ public class RankingView extends JPanel {
 	private JButton btnReturn;
 	private JPanel panel;
 	
-	public RankingView(MainFrame mf, MainMenu m){
+	public RankingView(MainFrame mf){
+		RankingView r=this;
 		this.setSize(1138, 500);
 		
 		Image icon = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 100); //이미지아이콘으로만드는것이좀더편함
@@ -36,7 +37,7 @@ public class RankingView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mf.remove(m.getPanel());
+				mf.remove(r);
 				panel=new MainMenu(mf);
 				mf.add(panel);
 				mf.repaint();

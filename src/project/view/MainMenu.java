@@ -30,7 +30,6 @@ public class MainMenu extends JPanel {
 		Image iRanking1 = new ImageIcon("Images/buttons/Ranking_press.gif").getImage().getScaledInstance(218, 121, 0);
 		Image iExit1 = new ImageIcon("Images/buttons/Exit_press.gif").getImage().getScaledInstance(218, 121, 0);
 
-
 		lbStart = new JLabel();
 		lbRank = new JLabel();
 		lbExit = new JLabel();
@@ -59,7 +58,6 @@ public class MainMenu extends JPanel {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				lbStart.setIcon(new ImageIcon(iStart));
 				lbStart.setSize(218, 121);
 				lbStart.setLocation(300, 290);
@@ -67,12 +65,13 @@ public class MainMenu extends JPanel {
 			
 			@Override
 			public void mouseClicked(MouseEvent e){
-
 				mf.remove(m); 
 				panel=new GameView(mf);
 				mf.add(panel);
 				mf.repaint();
-
+				Timer timer=new Timer(mf, panel);
+				Thread t1=timer;
+				t1.start();
 			}
 		});
 
@@ -85,19 +84,16 @@ public class MainMenu extends JPanel {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				lbRank.setIcon(new ImageIcon(iRanking));
 				lbRank.setSize(218, 121);
 				lbRank.setLocation(480, 290);
 			}
 			@Override
 			public void mouseClicked(MouseEvent e){
-
 				mf.remove(m);
-				panel=new RankingView(mf, m);
+				panel=new RankingView(mf);
 				mf.add(panel);
 				mf.repaint();
-
 			}
 		});
 		
@@ -110,7 +106,6 @@ public class MainMenu extends JPanel {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				lbExit.setIcon(new ImageIcon(iExit));
 				lbExit.setSize(218, 121);
 				lbExit.setLocation(660, 290);
@@ -122,41 +117,6 @@ public class MainMenu extends JPanel {
 		});
 
 		label.setSize(1138, 462);
-
-		/*btnStart.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mf.remove(m); 
-				panel=new GameView(mf);
-				mf.add(panel);
-				mf.repaint();
-
-			}
-
-		});
-
-		btnRank.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mf.remove(m);
-				panel=new RankingView(mf, m);
-				mf.add(panel);
-				mf.repaint();
-
-			}
-
-		});
-
-		btnExit.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-
-		});*/
 
 		label.add(lbStart);
 		label.add(lbRank);
