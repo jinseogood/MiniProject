@@ -69,9 +69,6 @@ public class MainMenu extends JPanel {
 				panel=new GameView(mf);
 				mf.add(panel);
 				mf.repaint();
-				Timer timer=new Timer(mf, panel);
-				Thread t1=timer;
-				t1.start();
 			}
 		});
 

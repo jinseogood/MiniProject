@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class RankingView extends JPanel {
-	
 	private JPanel panel;
 	private JLabel btnReturn;
 	
@@ -22,7 +21,6 @@ public class RankingView extends JPanel {
 		JLabel label = new JLabel(new ImageIcon(icon));
 		
 		label.setSize(1138, 462);
-		//label.setLayout(null);
 		
 		Image iReturn = new ImageIcon("Images/buttons/returnbtn.png").getImage().getScaledInstance(218, 121, 0);
 		Image iReturn1 = new ImageIcon("Images/buttons/return.gif").getImage().getScaledInstance(218, 121, 0);
@@ -33,28 +31,6 @@ public class RankingView extends JPanel {
 		
 		btnReturn.setSize(218, 121);
 		btnReturn.setLocation(480, 290);
-		
-		
-		//btnReturn=new JButton();
-		/*
-		ImageIcon btn = new ImageIcon("images/button.PNG");
-		btnReturn.setIcon(btn);
-		
-		btnReturn.setSize(80, 20);
-		btnReturn.setLocation(550, 230);
-		
-		btnReturn.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mf.remove(r);
-				panel=new MainMenu(mf);
-				mf.add(panel);
-				mf.repaint();
-			}
-			
-		});*/
-		
 		
 		btnReturn.addMouseListener(new MouseAdapter() {
 			
