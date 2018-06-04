@@ -6,24 +6,28 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MoneyBomb extends Thread{
+import project.view.MainFrame;
+
+public class MoneyBomb /*extends Thread*/{
 	private JPanel panel;
 	private JLabel[] money=new JLabel[2];
 	private int[] moneyX=new int[2];
 	private int[] moneyY=new int[2];
 	private int itemNo=0;
 
-	public MoneyBomb(JPanel panel){
+	public MoneyBomb(MainFrame mf, JPanel panel){
 		this.panel=panel;
 		
-		this.makeItem(0);
-		this.makeItem(1);
+		//Thread timer=new Timer(mf, panel);
+		//timer.start();
+		/*this.makeItem(0);
+		this.makeItem(1);*/
 		
 	}
 	
 	public void makeItem(int itemNo){
 		moneyX[itemNo]=(int)(Math.random()*1090);
-		
+
 		Image moneyImg=new ImageIcon("images/money" + (itemNo+1) + ".gif").getImage().getScaledInstance(50, 50, 0);
 		money[itemNo]=new JLabel(new ImageIcon(moneyImg));
 		
@@ -45,7 +49,7 @@ public class MoneyBomb extends Thread{
 		money[itemNo].setLocation(moneyX[itemNo], moneyY[itemNo]);
 	}
 
-	@Override
+	/*@Override
 	public void run() {
 		try {
 			this.sleep(1000);
@@ -66,6 +70,6 @@ public class MoneyBomb extends Thread{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 }

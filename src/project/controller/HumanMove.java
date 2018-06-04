@@ -24,6 +24,14 @@ public class HumanMove {
 		
 		panel.add(playerLabel);
 	}
+	
+	public int getPlayerX() {
+		return playerX;
+	}
+	
+	public int getPlayerY() {
+		return playerY;
+	}
 
 	public void Move(MainFrame mf, JPanel panel){		
 		mf.addKeyListener(new KeyAdapter(){
@@ -47,5 +55,8 @@ public class HumanMove {
 
 		});
 	}
+
+	
+	
 
 }

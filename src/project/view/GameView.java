@@ -25,14 +25,15 @@ public class GameView extends JPanel{
 		
 		backgroundLabel.setSize(1138, 462);
 		
-		Thread timer=new Timer(mf,this);
-		timer.start();
-		
 		HumanMove human=new HumanMove(this);
 		human.Move(mf, this);
 		
-		Thread item=new MoneyBomb(this);
-		item.start();
+		Thread timer=new Timer(mf,this, human);
+		timer.start();
+		
+		
+		/*Thread item=new MoneyBomb(this);
+		item.start();*/
 
 		this.add(backgroundLabel);
 	}
