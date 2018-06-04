@@ -12,31 +12,28 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import project.controller.HumanMove;
+import project.controller.MoneyBomb;
+import project.controller.Timer;
 
 public class GameView extends JPanel{
-
-	private int x=530;
-	private int y=330;
 
 	public GameView(MainFrame mf){
 		this.setSize(1138, 500);
 		this.setLayout(null);
-		Image playerImg=new ImageIcon("images/player2.gif").getImage().getScaledInstance(90, 80, 0);
-		JLabel playerLabel=new JLabel(new ImageIcon(playerImg));
 		Image backgroundImg = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 0); 
 		JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImg));
-		Image timerImg=new ImageIcon("images/timer.gif").getImage().getScaledInstance(51, 51, 0);
-		JLabel timerLabel=new JLabel(new ImageIcon(timerImg));
 		
-		playerLabel.setBounds(x, y, 100, 155);
 		backgroundLabel.setSize(1138, 462);
-		timerLabel.setBounds(550, 0, 51, 51);
 		
-		HumanMove human=new HumanMove(playerLabel,x,y);
+		Thread timer=new Timer(mf,this);
+		timer.start();
+		
+		HumanMove human=new HumanMove(this);
 		human.Move(mf, this);
+		
+		Thread item=new MoneyBomb(this);
+		item.start();
 
-		this.add(timerLabel);
-		this.add(playerLabel);
 		this.add(backgroundLabel);
 	}
 
