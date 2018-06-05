@@ -101,7 +101,8 @@ public class Timer extends Thread{
 
 		}
 		panel.removeAll();
-		userId = JOptionPane.showInputDialog(human.getScore() + "점, 아이디를 입력하세요!");
+		Image dialogImg = new ImageIcon("images/icon.PNG").getImage().getScaledInstance(51, 51, 0);
+		userId = (String) JOptionPane.showInputDialog(null, human.getScore() + "점, 아이디를 입력하세요!", "게임 종료", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
 		new Score(human.getScore(), userId).scoreSave();
 		mf.remove(panel);
 		panel=new RankingView(mf);

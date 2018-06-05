@@ -1,5 +1,6 @@
 package project.view;
 
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -50,7 +51,30 @@ public class RankingView extends JPanel {
 				mf.repaint();
 			}
 			
-		}); 
+		});
+		
+		Font font = new Font("¸¼Àº °íµñ", Font.BOLD, 36);
+		String test = "1000000 / HIJ";
+		
+		JLabel score1 = new JLabel();
+		JLabel score2 = new JLabel();
+		JLabel score3 = new JLabel();
+				
+		score1.setText(test);
+		score1.setBounds(77, 95, 400, 200);
+		score1.setFont(font);
+		
+		score2.setText(test);
+		score2.setBounds(457, 95, 400, 200);
+		score2.setFont(font);
+		
+		score3.setText(test);
+		score3.setBounds(817, 95, 400, 200);
+		score3.setFont(font);
+		
+		label.add(score1);
+		label.add(score2);
+		label.add(score3);
 		
 		label.add(btnReturn);
 		this.add(label);
