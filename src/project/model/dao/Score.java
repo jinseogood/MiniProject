@@ -10,28 +10,32 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
 import project.model.comparator.ScoreSort;
 
 public class Score implements Serializable{
 	private int score=0;
 	private String userId="";
-	
+
 	public Score() {}
-	public Score(int score, String userId) {
-		this.score = score;
-		this.userId = userId;
-	}
-	
+
 	public int getScore() {
 		return score;
 	}
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
+
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	public void scoreSave(){
 		ObjectOutputStream oos=null;
-		
+
 		try {
 			oos=new ObjectOutputStream(new FileOutputStream("score.dat", true));
 			oos.writeObject(this);
@@ -46,19 +50,17 @@ public class Score implements Serializable{
 				e.printStackTrace();
 			}
 		}
-		
-		
 	}
-	
-	public ArrayList readAll() {
-		ArrayList list = null;
+
+	public ArrayList<Score> readAll() {
+		ArrayList<Score> list = null;
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream("score.dat");
-			list = new ArrayList();
+			list = new ArrayList<Score>();
 			while(true){
 				ObjectInputStream ois = new ObjectInputStream(fis);
-				Score s = (Score) ois.readObject();
+				Score s =(Score) ois.readObject();
 				list.add(s);
 			}
 		} catch (EOFException e) {
@@ -73,11 +75,11 @@ public class Score implements Serializable{
 				e.printStackTrace();
 			}
 		}
-		
+
 		return list;
 	}
-	
-	
-	
+
+
+
 
 }

@@ -12,10 +12,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import project.model.dao.Score;
+
 public class MainMenu extends JPanel {
 	private JButton btnStart, btnRank, btnExit;
 	private JPanel panel;
 	private JLabel lbStart, lbRank, lbExit;
+	private Score s=new Score();
 
 	public MainMenu(MainFrame mf){
 		MainMenu m=this;
@@ -66,7 +69,7 @@ public class MainMenu extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e){
 				mf.remove(m); 
-				panel=new GameView(mf);
+				panel=new GameView(mf, s);
 				mf.add(panel);
 				mf.repaint();
 			}
@@ -88,7 +91,7 @@ public class MainMenu extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e){
 				mf.remove(m);
-				panel=new RankingView(mf);
+				panel=new RankingView(mf, s);
 				mf.add(panel);
 				mf.repaint();
 			}

@@ -55,7 +55,7 @@ public class Moneybag extends Item implements Runnable{
 				if(itemY<407){
 					int dis = (int)(Math.sqrt((human.getPlayerX() + 35 - itemX)*(human.getPlayerX() + 35 - itemX)
 							+ (human.getPlayerY()- itemY)*(human.getPlayerY()- itemY)));
-					if(dis<50 && itemY > 330){
+					if(dis<60 && itemY > 330){
 						human.setScore(human.getScore()+10000);
 						this.fallingEnd();
 						break;

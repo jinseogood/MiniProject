@@ -13,10 +13,11 @@ import javax.swing.JPanel;
 
 import project.controller.HumanMove;
 import project.controller.Timer;
+import project.model.dao.Score;
 
 public class GameView extends JPanel{
 
-	public GameView(MainFrame mf){
+	public GameView(MainFrame mf, Score s){
 		this.setSize(1138, 500);
 		this.setLayout(null);
 		Image backgroundImg = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 0); 
@@ -27,7 +28,7 @@ public class GameView extends JPanel{
 		HumanMove human=new HumanMove(this);
 		human.Move(mf, this);
 		
-		Thread timer=new Timer(mf,this, human);
+		Thread timer=new Timer(mf,this, human, s);
 		timer.start();
 
 		this.add(backgroundLabel);

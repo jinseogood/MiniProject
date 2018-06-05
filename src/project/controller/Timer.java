@@ -30,15 +30,17 @@ public class Timer extends Thread{
 	private JPanel panel;
 	private JLabel scoreField;
 	private HumanMove human;
+	private Score s;
 	private String userId;
 	private int op,op2;
 	private Thread[] items=new Item[150];
 
-	public Timer(MainFrame mf, JPanel panel, HumanMove human){
+	public Timer(MainFrame mf, JPanel panel, HumanMove human, Score s){
 		this.mf = mf;
 		this.panel = panel;
 		this.human=human;
-
+		this.s=s;
+		
 		Image timerImg=new ImageIcon("images/timer.gif").getImage().getScaledInstance(51, 51, 0);
 		JLabel timerLabel=new JLabel(new ImageIcon(timerImg));
 		JLabel scoreLabel=new JLabel("SCORE : ");
@@ -103,11 +105,13 @@ public class Timer extends Thread{
 		panel.removeAll();
 		Image dialogImg = new ImageIcon("images/icon.PNG").getImage().getScaledInstance(51, 51, 0);
 
-		userId = (String) JOptionPane.showInputDialog(null, human.getScore() + "ì , ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”!", "ê²Œì„ ì¢…ë£Œ", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
-		new Score(human.getScore(), userId).scoreSave();
+		userId = (String) JOptionPane.showInputDialog(null, human.getScore() + "Á¡, ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä!", "°ÔÀÓ Á¾·á", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
+		s.setScore(human.getScore());
+		s.setUserId(userId);
+		s.scoreSave();
 
 		mf.remove(panel);
-		panel=new RankingView(mf);
+		panel=new RankingView(mf, s);
 		mf.add(panel);
 		mf.repaint();
 
