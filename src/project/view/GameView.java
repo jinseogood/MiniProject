@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import project.controller.HumanMove;
-import project.controller.MoneyBomb;
 import project.controller.Timer;
 
 public class GameView extends JPanel{
@@ -30,10 +29,6 @@ public class GameView extends JPanel{
 		
 		Thread timer=new Timer(mf,this, human);
 		timer.start();
-		
-		
-		/*Thread item=new MoneyBomb(this);
-		item.start();*/
 
 		this.add(backgroundLabel);
 	}

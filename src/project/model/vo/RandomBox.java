@@ -8,15 +8,15 @@ import javax.swing.JPanel;
 
 import project.controller.HumanMove;
 
-public class Goldbar extends Item implements Runnable{
+public class RandomBox extends Item implements Runnable{
 	private JPanel panel;
 	private JLabel item;
 	private HumanMove human;
 	private int itemX=0;
 	private int itemY=0;
 	
-	public Goldbar(){}
-	public Goldbar(JPanel panel, HumanMove human){
+	public RandomBox(){}
+	public RandomBox(JPanel panel, HumanMove human){
 		this.panel=panel;
 		this.human=human;
 		this.makeItem();
@@ -25,7 +25,7 @@ public class Goldbar extends Item implements Runnable{
 	public void makeItem(){
 		itemX=(int)(Math.random()*1090);
 
-		Image itemImg=new ImageIcon("images/goldbar.png").getImage().getScaledInstance(50, 50, 0);
+		Image itemImg=new ImageIcon("images/randombox.gif").getImage().getScaledInstance(50, 50, 0);
 		item=new JLabel(new ImageIcon(itemImg));
 		
 		item.setBounds(itemX, itemY, 50, 50);
@@ -56,7 +56,6 @@ public class Goldbar extends Item implements Runnable{
 					int dis = (int)(Math.sqrt((human.getPlayerX() - itemX)*(human.getPlayerX()- itemX)
 							+ (human.getPlayerY()- itemY)*(human.getPlayerY()- itemY)));
 					if(dis<50 && itemY > 330){
-						human.setScore(human.getScore()+50000);
 						this.fallingEnd();
 						break;
 					}
