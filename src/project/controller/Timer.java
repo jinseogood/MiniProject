@@ -102,14 +102,16 @@ public class Timer extends Thread{
 		}
 		panel.removeAll();
 		Image dialogImg = new ImageIcon("images/icon.PNG").getImage().getScaledInstance(51, 51, 0);
-		userId = (String) JOptionPane.showInputDialog(null, human.getScore() + "Á¡, ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä!", "°ÔÀÓ Á¾·á", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
+
+		userId = (String) JOptionPane.showInputDialog(null, human.getScore() + "ì , ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”!", "ê²Œì„ ì¢…ë£Œ", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
 		new Score(human.getScore(), userId).scoreSave();
+
 		mf.remove(panel);
 		panel=new RankingView(mf);
 		mf.add(panel);
 		mf.repaint();
 
-
+		
 	}
 
 

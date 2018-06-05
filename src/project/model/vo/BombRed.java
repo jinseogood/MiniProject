@@ -53,7 +53,7 @@ public class BombRed extends Item implements Runnable{
 			this.fallingStart();
 			while(true){
 				if(itemY<407){
-					int dis = (int)(Math.sqrt((human.getPlayerX() - itemX)*(human.getPlayerX()- itemX)
+					int dis = (int)(Math.sqrt((human.getPlayerX() + 35 - itemX)*(human.getPlayerX() + 35 - itemX)
 							+ (human.getPlayerY()- itemY)*(human.getPlayerY()- itemY)));
 					if(dis<50 && itemY > 330){
 						human.setScore(0);
