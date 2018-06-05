@@ -13,6 +13,7 @@ public class RankingView extends JPanel {
 	private JPanel panel;
 	private JLabel btnReturn;
 	
+	
 	public RankingView(MainFrame mf){
 		RankingView r=this;
 		this.setSize(1138, 500);
