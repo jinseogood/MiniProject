@@ -56,6 +56,7 @@ public class Goldbar extends Item implements Runnable{
 					int dis = (int)(Math.sqrt((human.getPlayerX() + 35 - itemX)*(human.getPlayerX() + 35 - itemX)
 							+ (human.getPlayerY()- itemY)*(human.getPlayerY()- itemY)));
 					if(dis<50 && itemY > 330){
+						human.setScore(human.getScore()+50000);
 						this.fallingEnd();
 						break;
 					}

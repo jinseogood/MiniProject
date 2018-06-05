@@ -17,7 +17,7 @@ public class RankingView extends JPanel {
 		RankingView r=this;
 		this.setSize(1138, 500);
 		
-		Image icon = new ImageIcon("images/rankingbg.PNG").getImage().getScaledInstance(1138, 462, 100); //이미지아이콘으로만드는것이좀더편함
+		Image icon = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 100); //이미지아이콘으로만드는것이좀더편함
 		
 		JLabel label = new JLabel(new ImageIcon(icon));
 		label.setSize(1138, 462);
@@ -49,7 +49,30 @@ public class RankingView extends JPanel {
 				mf.repaint();
 			}
 			
-		}); 
+		});
+		
+		Font font = new Font("맑은 고딕", Font.BOLD, 36);
+		String test = "1000000 / HIJ";
+		
+		JLabel score1 = new JLabel();
+		JLabel score2 = new JLabel();
+		JLabel score3 = new JLabel();
+				
+		score1.setText(test);
+		score1.setBounds(77, 95, 400, 200);
+		score1.setFont(font);
+		
+		score2.setText(test);
+		score2.setBounds(457, 95, 400, 200);
+		score2.setFont(font);
+		
+		score3.setText(test);
+		score3.setBounds(817, 95, 400, 200);
+		score3.setFont(font);
+		
+		label.add(score1);
+		label.add(score2);
+		label.add(score3);
 		
 		Font font = new Font("맑은 고딕", Font.BOLD, 36);
 		String test = "1000000 / HIJ";

@@ -56,6 +56,7 @@ public class BombGreen extends Item implements Runnable{
 					int dis = (int)(Math.sqrt((human.getPlayerX() + 35 - itemX)*(human.getPlayerX() + 35 - itemX)
 							+ (human.getPlayerY()- itemY)*(human.getPlayerY()- itemY)));
 					if(dis<50 && itemY > 330){
+						human.setScore((int)(human.getScore()*0.3));
 						this.fallingEnd();
 						break;
 					}

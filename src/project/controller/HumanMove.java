@@ -13,6 +13,7 @@ import project.view.MainFrame;
 
 public class HumanMove {
 	private JLabel playerLabel;
+	private int score=0;
 	private int playerX=530;
 	private int playerY=330;
 
@@ -31,6 +32,14 @@ public class HumanMove {
 	
 	public int getPlayerY() {
 		return playerY;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 	public void Move(MainFrame mf, JPanel panel){		

@@ -1,8 +1,10 @@
 package project.controller;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import project.model.dao.Score;
 import project.model.vo.BombBlue;
 import project.model.vo.BombGreen;
 import project.model.vo.BombRed;
@@ -18,12 +21,14 @@ import project.model.vo.Goldbar;
 import project.model.vo.Item;
 import project.model.vo.Money;
 import project.model.vo.Moneybag;
+import project.model.vo.RandomBox;
 import project.view.MainFrame;
 import project.view.RankingView;
 
 public class Timer extends Thread{
 	private MainFrame mf;
 	private JPanel panel;
+	private JLabel scoreField;
 	private HumanMove human;
 	private String userId;
 	private int op,op2;
@@ -36,10 +41,18 @@ public class Timer extends Thread{
 
 		Image timerImg=new ImageIcon("images/timer.gif").getImage().getScaledInstance(51, 51, 0);
 		JLabel timerLabel=new JLabel(new ImageIcon(timerImg));
+		JLabel scoreLabel=new JLabel("SCORE : ");
+		scoreField=new JLabel("0");
+		scoreLabel.setFont(new Font("Consolas", Font.BOLD, 23));
+		scoreField.setFont(new Font("Consolas", Font.BOLD, 23));
 
 		timerLabel.setBounds(550, 0, 51, 51);
+		scoreLabel.setBounds(938, 10, 130, 23);
+		scoreField.setBounds(1038, 10, 200, 23);
 
 		panel.add(timerLabel);
+		panel.add(scoreLabel);
+		panel.add(scoreField);
 
 		for(int i=0;i<150;i++){
 			op = (int)(Math.random()*4);
@@ -52,10 +65,12 @@ public class Timer extends Thread{
 					items[i]=new Coin(panel, human);
 				}else if(op2>200){
 					items[i]=new Money(panel, human);
-				}else if(op2>50){
+				}else if(op2>80){
 					items[i]=new Moneybag(panel, human);
-				}else{
+				}else if(op2>35){
 					items[i]=new Goldbar(panel, human);
+				}else{
+					items[i]=new RandomBox(panel, human);
 				}
 				break;
 			case 3:
@@ -77,6 +92,7 @@ public class Timer extends Thread{
 	public void run() {
 		for(int i = 0; i < 150; i++){
 			items[i].start();
+			scoreField.setText(Integer.toString(human.getScore()));
 			try {
 				this.sleep(200);
 			} catch (InterruptedException e) {
@@ -86,10 +102,10 @@ public class Timer extends Thread{
 		}
 		panel.removeAll();
 		Image dialogImg = new ImageIcon("images/icon.PNG").getImage().getScaledInstance(51, 51, 0);
-		
-		userId = (String) JOptionPane.showInputDialog(null, "¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ¼¼¿ä!", "°ÔÀÓ Á¾·á", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
-		
-		//saveScore(userId);
+
+		userId = (String) JOptionPane.showInputDialog(null, human.getScore() + "ì , ì•„ì´ë””ë¥¼ ìž…ë ¥í•˜ì„¸ìš”!", "ê²Œìž„ ì¢…ë£Œ", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
+		new Score(human.getScore(), userId).scoreSave();
+
 		mf.remove(panel);
 		panel=new RankingView(mf);
 		mf.add(panel);
@@ -98,8 +114,5 @@ public class Timer extends Thread{
 		
 	}
 
-	/*public void saveScore(String userId){
-		new ScoreManager(userId, mf, panel).saveScore();
-	}*/
 
 }

@@ -8,15 +8,15 @@ import javax.swing.JPanel;
 
 import project.controller.HumanMove;
 
-public class BombRed extends Item implements Runnable{
+public class RandomBox extends Item implements Runnable{
 	private JPanel panel;
 	private JLabel item;
 	private HumanMove human;
 	private int itemX=0;
 	private int itemY=0;
 	
-	public BombRed(){}
-	public BombRed(JPanel panel, HumanMove human){
+	public RandomBox(){}
+	public RandomBox(JPanel panel, HumanMove human){
 		this.panel=panel;
 		this.human=human;
 		this.makeItem();
@@ -25,7 +25,7 @@ public class BombRed extends Item implements Runnable{
 	public void makeItem(){
 		itemX=(int)(Math.random()*1090);
 
-		Image itemImg=new ImageIcon("images/bombRed.gif").getImage().getScaledInstance(50, 50, 0);
+		Image itemImg=new ImageIcon("images/randombox.gif").getImage().getScaledInstance(50, 50, 0);
 		item=new JLabel(new ImageIcon(itemImg));
 		
 		item.setBounds(itemX, itemY, 50, 50);
@@ -53,10 +53,9 @@ public class BombRed extends Item implements Runnable{
 			this.fallingStart();
 			while(true){
 				if(itemY<407){
-					int dis = (int)(Math.sqrt((human.getPlayerX() + 35 - itemX)*(human.getPlayerX() + 35 - itemX)
+					int dis = (int)(Math.sqrt((human.getPlayerX() - itemX)*(human.getPlayerX()- itemX)
 							+ (human.getPlayerY()- itemY)*(human.getPlayerY()- itemY)));
 					if(dis<50 && itemY > 330){
-						human.setScore(0);
 						this.fallingEnd();
 						break;
 					}
