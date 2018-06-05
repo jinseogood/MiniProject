@@ -85,14 +85,17 @@ public class Timer extends Thread{
 
 		}
 		panel.removeAll();
-		userId = JOptionPane.showInputDialog("아이디를 입력하세요!");
+		Image dialogImg = new ImageIcon("images/icon.PNG").getImage().getScaledInstance(51, 51, 0);
+		
+		userId = (String) JOptionPane.showInputDialog(null, "아이디를 입력하세요!", "게임 종료", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
+		
 		//saveScore(userId);
 		mf.remove(panel);
 		panel=new RankingView(mf);
 		mf.add(panel);
 		mf.repaint();
 
-
+		
 	}
 
 	/*public void saveScore(String userId){
