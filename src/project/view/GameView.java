@@ -5,8 +5,11 @@ import java.awt.Image;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
-
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,6 +35,7 @@ public class GameView extends JPanel{
 		timer.start();
 
 		this.add(backgroundLabel);
+		
 	}
 
 }

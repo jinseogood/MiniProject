@@ -32,15 +32,18 @@ public class Timer extends Thread{
 	private HumanMove human;
 	private Score s;
 	private String userId;
-	private int op,op2;
+	private int op,op2,op3=(int)(Math.random()*2)+1;;
+	private boolean randomSW;
 	private Thread[] items=new Item[150];
+	private Thread[] itemsGold=new Item[150];
+	private Thread[] itemsBomb=new Item[150];
 
 	public Timer(MainFrame mf, JPanel panel, HumanMove human, Score s){
 		this.mf = mf;
 		this.panel = panel;
 		this.human=human;
 		this.s=s;
-		
+
 		Image timerImg=new ImageIcon("images/timer.gif").getImage().getScaledInstance(51, 51, 0);
 		JLabel timerLabel=new JLabel(new ImageIcon(timerImg));
 		JLabel scoreLabel=new JLabel("SCORE : ");
@@ -56,6 +59,15 @@ public class Timer extends Thread{
 		panel.add(scoreLabel);
 		panel.add(scoreField);
 
+		this.makeItem();
+		this.changeItem();
+	}
+
+	public void setRandomSW(boolean randomSW) {
+		this.randomSW = randomSW;
+	}
+
+	public void makeItem(){
 		for(int i=0;i<150;i++){
 			op = (int)(Math.random()*4);
 			switch(op){
@@ -65,6 +77,7 @@ public class Timer extends Thread{
 				op2 = (int)(Math.random()*1000);
 				if(op2>500){
 					items[i]=new Coin(panel, human);
+					//items[i]=new RandomBox(panel, human, this);
 				}else if(op2>200){
 					items[i]=new Money(panel, human);
 				}else if(op2>80){
@@ -72,7 +85,7 @@ public class Timer extends Thread{
 				}else if(op2>35){
 					items[i]=new Goldbar(panel, human);
 				}else{
-					items[i]=new RandomBox(panel, human);
+					items[i]=new RandomBox(panel, human, this);
 				}
 				break;
 			case 3:
@@ -90,10 +103,37 @@ public class Timer extends Thread{
 		}
 	}
 
+	public void changeItem(){
+		for(int i=0;i<itemsGold.length;i++){
+			itemsGold[i]=new Goldbar(panel, human);
+			itemsBomb[i]=new BombRed(panel, human);
+		}
+	}
+
 	@Override
 	public void run() {
+		int count=0;
 		for(int i = 0; i < 150; i++){
-			items[i].start();
+			if(randomSW){
+				count++;
+				if(op3==2){
+					itemsGold[i].start();
+					if(count==34){
+						randomSW=false;
+						op3=(int)(Math.random()*2)+1;
+					}
+				}
+				else{
+					itemsBomb[i].start();
+					if(count==34){
+						randomSW=false;
+						op3=(int)(Math.random()*2)+1;
+					}
+				}
+			}
+			else{
+				items[i].start();
+			}
 			scoreField.setText(Integer.toString(human.getScore()));
 			try {
 				this.sleep(200);
@@ -115,7 +155,7 @@ public class Timer extends Thread{
 		mf.add(panel);
 		mf.repaint();
 
-		
+
 	}
 
 
