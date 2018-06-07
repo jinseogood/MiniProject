@@ -127,16 +127,6 @@ public class MainMenu extends JPanel {
 		label.add(lbExit);
 		this.add(label);
 		
-		try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sound/splatoon8bit.wav").getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch(Exception ex) {
-            System.out.println("Error with playing sound.");
-            ex.printStackTrace();
-        }
-
 	}
 
 	public JPanel getPanel() {

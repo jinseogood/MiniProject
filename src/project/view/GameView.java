@@ -2,7 +2,8 @@ package project.view;
 
 import java.awt.Color;
 import java.awt.Image;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -11,6 +12,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -25,17 +27,17 @@ public class GameView extends JPanel{
 		this.setLayout(null);
 		Image backgroundImg = new ImageIcon("images/back.PNG").getImage().getScaledInstance(1138, 462, 0); 
 		JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImg));
-		
+
 		backgroundLabel.setSize(1138, 462);
-		
+
 		HumanMove human=new HumanMove(this);
 		human.Move(mf, this);
-		
+
 		Thread timer=new Timer(mf,this, human, s);
 		timer.start();
 
 		this.add(backgroundLabel);
-		
+
 	}
 
 }

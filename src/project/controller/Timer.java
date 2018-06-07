@@ -3,9 +3,12 @@ package project.controller;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,21 +20,22 @@ import project.model.vo.BombBlue;
 import project.model.vo.BombGreen;
 import project.model.vo.BombRed;
 import project.model.vo.Coin;
+import project.model.vo.Diamond;
 import project.model.vo.Goldbar;
 import project.model.vo.Item;
 import project.model.vo.Money;
 import project.model.vo.Moneybag;
 import project.model.vo.RandomBox;
+import project.view.Bonus;
 import project.view.MainFrame;
 import project.view.RankingView;
 
 public class Timer extends Thread{
 	private MainFrame mf;
 	private JPanel panel;
-	private JLabel scoreField;
+	private JLabel scoreField, stageLabel;
 	private HumanMove human;
 	private Score s;
-	private String userId;
 	private int op,op2,op3=(int)(Math.random()*2)+1;;
 	private boolean randomSW;
 	private Thread[] items=new Item[150];
@@ -48,16 +52,20 @@ public class Timer extends Thread{
 		JLabel timerLabel=new JLabel(new ImageIcon(timerImg));
 		JLabel scoreLabel=new JLabel("SCORE : ");
 		scoreField=new JLabel("0");
+		stageLabel=new JLabel("START");
 		scoreLabel.setFont(new Font("Consolas", Font.BOLD, 23));
 		scoreField.setFont(new Font("Consolas", Font.BOLD, 23));
+		stageLabel.setFont(new Font("Consolas", Font.BOLD, 25));
 
 		timerLabel.setBounds(550, 0, 51, 51);
-		scoreLabel.setBounds(938, 10, 130, 23);
-		scoreField.setBounds(1038, 10, 200, 23);
+		scoreLabel.setBounds(908, 10, 130, 23);
+		scoreField.setBounds(1008, 10, 200, 23);
+		stageLabel.setBounds(540, 220, 100, 25);
 
 		panel.add(timerLabel);
 		panel.add(scoreLabel);
 		panel.add(scoreField);
+		panel.add(stageLabel);
 
 		this.makeItem();
 		this.changeItem();
@@ -84,18 +92,21 @@ public class Timer extends Thread{
 					items[i]=new Moneybag(panel, human);
 				}else if(op2>35){
 					items[i]=new Goldbar(panel, human);
-				}else{
+				}else if(op2>5){
 					items[i]=new RandomBox(panel, human, this);
+				}else{
+					items[i]=new Diamond(panel, human);
 				}
+				
 				break;
 			case 3:
 				op2 = (int)(Math.random()*1000);
-				if(op2>666){
-					items[i]=new BombBlue(panel, human);
-				}else if(op2>333){
-					items[i]=new BombRed(panel, human);
-				}else{
+				if(op2>500){
 					items[i]=new BombGreen(panel, human);
+				}else if(op2>200){
+					items[i]=new BombBlue(panel, human);
+				}else{
+					items[i]=new BombRed(panel, human);
 				}
 				break;
 
@@ -118,15 +129,17 @@ public class Timer extends Thread{
 				count++;
 				if(op3==2){
 					itemsGold[i].start();
-					if(count==34){
+					if(count==20){
 						randomSW=false;
+						count=0;
 						op3=(int)(Math.random()*2)+1;
 					}
 				}
 				else{
 					itemsBomb[i].start();
-					if(count==34){
+					if(count==20){
 						randomSW=false;
+						count=0;
 						op3=(int)(Math.random()*2)+1;
 					}
 				}
@@ -135,6 +148,9 @@ public class Timer extends Thread{
 				items[i].start();
 			}
 			scoreField.setText(Integer.toString(human.getScore()));
+			if(i==7){
+				stageLabel.setVisible(false);
+			}
 			try {
 				this.sleep(200);
 			} catch (InterruptedException e) {
@@ -143,15 +159,8 @@ public class Timer extends Thread{
 
 		}
 		panel.removeAll();
-		Image dialogImg = new ImageIcon("images/dialogIcon.PNG").getImage().getScaledInstance(51, 51, 0);
-
-		userId = (String) JOptionPane.showInputDialog(null, human.getScore() + "점, 아이디를 입력하세요!", "게임 종료", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
-		s.setScore(human.getScore());
-		s.setUserId(userId);
-		s.scoreSave();
-
 		mf.remove(panel);
-		panel=new RankingView(mf, s);
+		panel=new Bonus(mf, human, s);
 		mf.add(panel);
 		mf.repaint();
 

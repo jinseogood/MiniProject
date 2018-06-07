@@ -9,27 +9,24 @@ import javax.swing.JPanel;
 import project.controller.HumanMove;
 import project.controller.Timer;
 
-public class RandomBox extends Item implements Runnable{
+public class Diamond extends Item implements Runnable{
 	private JPanel panel;
 	private JLabel item;
 	private HumanMove human;
-	private Timer timer;
 	private int itemX=0;
 	private int itemY=0;
-	private boolean randomSW=false;
 	
-	public RandomBox(){}
-	public RandomBox(JPanel panel, HumanMove human, Timer timer){
+	public Diamond(){}
+	public Diamond(JPanel panel, HumanMove human){
 		this.panel=panel;
 		this.human=human;
-		this.timer=timer;
 		this.makeItem();
 	}
 	
 	public void makeItem(){
 		itemX=(int)(Math.random()*1090);
 
-		Image itemImg=new ImageIcon("images/randombox.gif").getImage().getScaledInstance(50, 50, 0);
+		Image itemImg=new ImageIcon("images/diamond.gif").getImage().getScaledInstance(50, 50, 0);
 		item=new JLabel(new ImageIcon(itemImg));
 		
 		item.setBounds(itemX, itemY, 50, 50);
@@ -46,13 +43,17 @@ public class RandomBox extends Item implements Runnable{
 	}
 	
 	public void falling(){
-		itemY+=50;
-		item.setLocation(itemX, itemY);
-	}
-	
-	public void randomSW(){
-		this.randomSW=true;
-		timer.setRandomSW(randomSW);
+		int op=(int)(Math.random()*2)+1;
+		if(op==1){
+			itemX-=100;
+			itemY+=50;
+			item.setLocation(itemX, itemY);
+		}
+		else{
+			itemX+=100;
+			itemY+=50;
+			item.setLocation(itemX, itemY);
+		}
 	}
 
 	@Override
@@ -65,7 +66,7 @@ public class RandomBox extends Item implements Runnable{
 					int dis = (int)(Math.sqrt((human.getPlayerX() + 35 - itemX)*(human.getPlayerX() + 35- itemX)
 							+ (human.getPlayerY()- itemY)*(human.getPlayerY()- itemY)));
 					if(dis<60 && itemY > 330){
-						this.randomSW();
+						human.setScore(human.getScore()+5000000);
 						this.fallingEnd();
 						break;
 					}
