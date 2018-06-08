@@ -14,10 +14,12 @@ import project.view.MainFrame;
 public class HumanMove {
 	private JLabel playerLabel;
 	private int score=0;
-	private int playerX=530;
+	private int playerX=530; 	//캐릭터 초기 시작 위치
 	private int playerY=330;
 
+	
 	public HumanMove(JPanel panel){
+		
 		Image playerImg=new ImageIcon("images/player.gif").getImage().getScaledInstance(90, 80, 0);
 		playerLabel=new JLabel(new ImageIcon(playerImg));
 		
@@ -42,6 +44,9 @@ public class HumanMove {
 		this.score = score;
 	}
 
+	
+	
+	//좌표 변경(캐릭터 움직임) 메소드 - 키보드 이벤트
 	public void Move(MainFrame mf, JPanel panel){		
 		mf.addKeyListener(new KeyAdapter(){
 
@@ -49,7 +54,7 @@ public class HumanMove {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_LEFT){
 					if(playerX>0){
-						playerX-=20;
+						playerX-=20; 
 						playerLabel.setLocation(playerX, playerY);
 					}
 				}

@@ -56,22 +56,24 @@ public class MainMenu extends JPanel {
 		Image icon = new ImageIcon("images/mainbg.PNG").getImage().getScaledInstance(1138, 462, 100); //이미지아이콘으로만드는것이좀더편함
 		JLabel label = new JLabel(new ImageIcon(icon));
 
+		
+		//버튼에 이벤트 추가 (마우스 이벤트)
 		lbStart.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e){	
+			public void mouseEntered(MouseEvent e){	//마우스 들어갔을 때
 				lbStart.setIcon(new ImageIcon(iStart1));
 				lbStart.setSize(218, 121);
 				lbStart.setLocation(300, 290);
 			}
 			@Override
-			public void mouseExited(MouseEvent e) {
+			public void mouseExited(MouseEvent e) { //마우스 나갔을 때
 				lbStart.setIcon(new ImageIcon(iStart));
 				lbStart.setSize(218, 121);
 				lbStart.setLocation(300, 290);
 			}
 			
 			@Override
-			public void mouseClicked(MouseEvent e){
+			public void mouseClicked(MouseEvent e){ //마우스 클릭 시
 				mf.remove(m); 
 				panel=new GameView(mf, s);
 				mf.add(panel);
@@ -127,16 +129,6 @@ public class MainMenu extends JPanel {
 		label.add(lbExit);
 		this.add(label);
 		
-		try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sound/splatoon8bit.wav").getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch(Exception ex) {
-            System.out.println("Error with playing sound.");
-            ex.printStackTrace();
-        }
-
 	}
 
 	public JPanel getPanel() {

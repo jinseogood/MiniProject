@@ -50,6 +50,7 @@ public class RandomBox extends Item implements Runnable{
 		item.setLocation(itemX, itemY);
 	}
 	
+	//타이머 객체로 랜덤박스를 먹었는지 안 먹었는지 결과를 보내줌
 	public void randomSW(){
 		this.randomSW=true;
 		timer.setRandomSW(randomSW);
@@ -69,7 +70,7 @@ public class RandomBox extends Item implements Runnable{
 						this.fallingEnd();
 						break;
 					}
-					Thread.sleep(300);
+					Thread.sleep(60);
 					this.falling();
 				}
 				else{
