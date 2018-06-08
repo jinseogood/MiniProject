@@ -46,7 +46,7 @@ public class RandomBox extends Item implements Runnable{
 	}
 	
 	public void falling(){
-		itemY+=50;
+		itemY+=15;
 		item.setLocation(itemX, itemY);
 	}
 	
@@ -69,7 +69,7 @@ public class RandomBox extends Item implements Runnable{
 						this.fallingEnd();
 						break;
 					}
-					Thread.sleep(300);
+					Thread.sleep(60);
 					this.falling();
 				}
 				else{

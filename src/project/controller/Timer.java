@@ -97,7 +97,7 @@ public class Timer extends Thread{
 				}else{
 					items[i]=new Diamond(panel, human);
 				}
-				
+
 				break;
 			case 3:
 				op2 = (int)(Math.random()*1000);
@@ -151,6 +151,16 @@ public class Timer extends Thread{
 			if(i==7){
 				stageLabel.setVisible(false);
 			}
+			if(i==149){
+				for(int k=134;k<150;k++){
+					try {
+						Thread.sleep(1);
+						items[k].interrupt();
+					} catch (InterruptedException e) {
+						//e.printStackTrace();
+					}
+				}
+			}
 			try {
 				this.sleep(200);
 			} catch (InterruptedException e) {
@@ -158,12 +168,13 @@ public class Timer extends Thread{
 			}
 
 		}
+
 		panel.removeAll();
+		
 		mf.remove(panel);
 		panel=new Bonus(mf, human, s);
 		mf.add(panel);
 		mf.repaint();
-
 
 	}
 

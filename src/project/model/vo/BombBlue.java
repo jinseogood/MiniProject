@@ -57,6 +57,7 @@ public class BombBlue extends Item implements Runnable{
 							+ (human.getPlayerY()- itemY)*(human.getPlayerY()- itemY)));
 					if(dis<60 && itemY > 330){
 						human.setScore((int)(human.getScore()*0.5));
+						System.out.println("score:" + human.getScore());
 						this.fallingEnd();
 						break;
 					}
