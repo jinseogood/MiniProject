@@ -54,7 +54,7 @@ public class RankingView extends JPanel {
 			}
 			
 		});
-		list=s.readAll();
+		list=s.readAll(); 	//파일에 저장된 랭킹 정보를 읽어 list에 저장
 		
 		Font font = new Font("맑은 고딕", Font.BOLD, 36);
 		JLabel[] score=new JLabel[3];

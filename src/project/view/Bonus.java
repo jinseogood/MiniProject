@@ -60,6 +60,7 @@ public class Bonus extends JPanel{
 		backgroundLabel.add(boxOp);
 		backgroundLabel.add(boxNum);
 		
+		//말풍선 클릭 시 이니셜 입력창 발생
 		dialogLabel.addMouseListener(new MouseAdapter(){
 
 			@Override
@@ -69,6 +70,7 @@ public class Bonus extends JPanel{
 			
 		});
 
+		//보너스 연산자
 		boxOp.addMouseListener(new MouseAdapter(){
 
 			@Override
@@ -98,6 +100,7 @@ public class Bonus extends JPanel{
 			}
 		});
 
+		//보너스 숫자
 		boxNum.addMouseListener(new MouseAdapter(){
 
 			@Override
@@ -308,10 +311,12 @@ public class Bonus extends JPanel{
 		this.add(backgroundLabel);
 	}
 
-	public void dialog(){
+	public void dialog(){ //이니셜 입력을 위한 다이얼로그 생성 함수
 		Image dialogImg = new ImageIcon("images/dialogIcon.PNG").getImage().getScaledInstance(51, 51, 0);
 		userId = (String) JOptionPane.showInputDialog(null, human.getScore() + "점, 아이디를 입력하세요!", "게임 종료", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
-		s.setScore(human.getScore());
+		
+		//스코어 객체에 정보 저장
+		s.setScore(human.getScore());	
 		s.setUserId(userId);
 		s.scoreSave();
 

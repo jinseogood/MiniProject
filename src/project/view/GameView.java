@@ -30,6 +30,8 @@ public class GameView extends JPanel{
 
 		backgroundLabel.setSize(1138, 462);
 
+		
+		//캐릭터 움직이게 하는 클래스
 		HumanMove human=new HumanMove(this);
 		human.Move(mf, this);
 

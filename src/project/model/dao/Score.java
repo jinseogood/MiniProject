@@ -32,8 +32,9 @@ public class Score implements Serializable{
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
-	public void scoreSave(){
+	
+	//랭킹 점수를 파일에 저장
+	public void scoreSave(){	
 		ObjectOutputStream oos=null;
 
 		try {
@@ -52,6 +53,7 @@ public class Score implements Serializable{
 		}
 	}
 
+	//랭킹 정보 읽어옴
 	public ArrayList<Score> readAll() {
 		ArrayList<Score> list = null;
 		FileInputStream fis = null;
@@ -64,7 +66,7 @@ public class Score implements Serializable{
 				list.add(s);
 			}
 		} catch (EOFException e) {
-			list.sort(new ScoreSort());
+			list.sort(new ScoreSort()); //점수 큰수대로 정렬
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();

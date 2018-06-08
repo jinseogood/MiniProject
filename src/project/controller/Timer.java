@@ -71,10 +71,12 @@ public class Timer extends Thread{
 		this.changeItem();
 	}
 
+	//랜덤 박스를 먹었는지 안 먹었는지 확인하는 함수
 	public void setRandomSW(boolean randomSW) {
 		this.randomSW = randomSW;
 	}
-
+	
+	//화면에 뿌려줄 아이템을 만들어 놓는 함수
 	public void makeItem(){
 		for(int i=0;i<150;i++){
 			op = (int)(Math.random()*4);
@@ -113,7 +115,8 @@ public class Timer extends Thread{
 			}
 		}
 	}
-
+	
+	//랜덤 박스 먹었을 때 나올 금괴, 폭탄을 미리 만들어 놓음
 	public void changeItem(){
 		for(int i=0;i<itemsGold.length;i++){
 			itemsGold[i]=new Goldbar(panel, human);
@@ -125,11 +128,11 @@ public class Timer extends Thread{
 	public void run() {
 		int count=0;
 		for(int i = 0; i < 150; i++){
-			if(randomSW){
+			if(randomSW){	//랜덤 박스를 먹었을 때 if문 진입
 				count++;
-				if(op3==2){
+				if(op3==2){ 	
 					itemsGold[i].start();
-					if(count==20){
+					if(count==20){ //20개 한정
 						randomSW=false;
 						count=0;
 						op3=(int)(Math.random()*2)+1;
@@ -144,14 +147,14 @@ public class Timer extends Thread{
 					}
 				}
 			}
-			else{
+			else{ //랜덤박스 제외 다른 아이템을 뿌려준다
 				items[i].start();
 			}
 			scoreField.setText(Integer.toString(human.getScore()));
-			if(i==7){
+			if(i==7){ //게임 시작 후 GAME START 라벨을 안 보이게 함
 				stageLabel.setVisible(false);
 			}
-			if(i==149){
+			if(i==149){ //주어진 시간 종료 후 스레드 종료
 				for(int k=134;k<150;k++){
 					try {
 						Thread.sleep(1);
@@ -162,7 +165,7 @@ public class Timer extends Thread{
 				}
 			}
 			try {
-				this.sleep(200);
+				this.sleep(200); //0.2초마다 아이템 하나씩 발생
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -171,6 +174,7 @@ public class Timer extends Thread{
 
 		panel.removeAll();
 		
+		//보너스 페이지로 전환
 		mf.remove(panel);
 		panel=new Bonus(mf, human, s);
 		mf.add(panel);
