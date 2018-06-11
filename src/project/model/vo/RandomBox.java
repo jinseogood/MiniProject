@@ -7,19 +7,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import project.controller.HumanMove;
-import project.controller.Timer;
+import project.controller.Timer_Item;
 
 public class RandomBox extends Item implements Runnable{
 	private JPanel panel;
 	private JLabel item;
 	private HumanMove human;
-	private Timer timer;
+	private Timer_Item timer;
 	private int itemX=0;
 	private int itemY=0;
 	private boolean randomSW=false;
 	
 	public RandomBox(){}
-	public RandomBox(JPanel panel, HumanMove human, Timer timer){
+	public RandomBox(JPanel panel, HumanMove human, Timer_Item timer){
 		this.panel=panel;
 		this.human=human;
 		this.timer=timer;

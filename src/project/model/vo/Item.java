@@ -3,31 +3,28 @@ package project.model.vo;
 import javax.swing.JPanel;
 
 public class Item extends Thread{
-	private Item item=this;
-	
 	public Item(){}
-
 	@Override
 	public void run() {
-		if(item instanceof Money){
+		if(this instanceof Money){
 			new Money().start();			
 		}
-		if(item instanceof Goldbar){
+		if(this instanceof Goldbar){
 			new Goldbar().start();
 		}
-		if(item instanceof Moneybag){
+		if(this instanceof Moneybag){
 			new Moneybag().start();
 		}
-		if(item instanceof Coin){
+		if(this instanceof Coin){
 			new Coin().start();
 		}
-		if(item instanceof BombBlue){
+		if(this instanceof BombBlue){
 			new BombBlue().start();
 		}
-		if(item instanceof BombRed){
+		if(this instanceof BombRed){
 			new BombRed().start();
 		}
-		if(item instanceof BombGreen){
+		if(this instanceof BombGreen){
 			new BombGreen().start();
 		}
 	}

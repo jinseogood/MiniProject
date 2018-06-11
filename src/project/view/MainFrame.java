@@ -35,7 +35,8 @@ public class MainFrame extends JFrame{
 		
 		//πË∞Ê¿Ωæ«
 		try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sound/splatoon8bit.wav").getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
+            		new File("sound/splatoon8bit.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
