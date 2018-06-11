@@ -44,16 +44,16 @@ public class Diamond extends Item implements Runnable{
 		panel.remove(item);
 	}
 	
-	//떨어지는 함수 (X, Y 둘 다 움직임)
+	//떨어지는 함수 (다이아몬드는 X, Y 둘 다 움직임)
 	public void falling(){
 		int op=(int)(Math.random()*2)+1;
 		if(op==1){
-			itemX-=100;
+			itemX-=70;
 			itemY+=50;
 			item.setLocation(itemX, itemY);
 		}
 		else{
-			itemX+=100;
+			itemX+=70;
 			itemY+=50;
 			item.setLocation(itemX, itemY);
 		}
@@ -72,7 +72,6 @@ public class Diamond extends Item implements Runnable{
 					//최단 거리, 아이템과 땅과의 거리를 판별 
 					if(dis<60 && itemY > 330){
 						human.setScore(human.getScore()+5000000);
-						System.out.println("score:" + human.getScore());
 						this.fallingEnd();
 						break;
 					}

@@ -23,7 +23,7 @@ public class Bonus extends JPanel{
 	private JLabel[] num=new JLabel[10];
 	private JPanel panel;
 	private String userId;
-	private int swOp=0, swNum=0;
+	private int swOp=(int)(Math.random()*3)+1, swNum=0;
 	private int bonusNum=0, sw=0;
 
 	public Bonus(MainFrame mf, HumanMove human, Score s){
@@ -81,10 +81,8 @@ public class Bonus extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				backgroundLabel.remove(boxOp);
-				swOp=(int)(Math.random()*2)+1;
 
-				if(swOp==2){
-					sw=2;
+				if(swOp>=2){
 					Image multiImg = new ImageIcon("images/multi.PNG").getImage().getScaledInstance(110, 110, 0);
 					multi=new JLabel();
 					multi.setIcon(new ImageIcon(multiImg));
@@ -92,7 +90,6 @@ public class Bonus extends JPanel{
 					backgroundLabel.add(multi);
 				}
 				else{
-					sw=1;
 					Image divisionImg = new ImageIcon("images/division.PNG").getImage().getScaledInstance(110, 110, 0);
 					division=new JLabel();
 					division.setIcon(new ImageIcon(divisionImg));
@@ -113,7 +110,7 @@ public class Bonus extends JPanel{
 				backgroundLabel.remove(boxNum);
 				dialogLabel.setVisible(true);
 
-				if(sw == 2){
+				if(swOp == 2){
 					swNum=(int)(Math.random()*9);
 					switch(swNum){
 					case 0:
@@ -207,7 +204,7 @@ public class Bonus extends JPanel{
 
 						break;
 					}
-				}else if(sw == 1){
+				}else {
 					swNum=(int)(Math.random()*8) + 1;
 					switch(swNum){
 					case 1:
@@ -296,29 +293,23 @@ public class Bonus extends JPanel{
 				panel.add(backgroundLabel);
 				mf.repaint();
 
-
-				if(sw==2){
-					System.out.println(human.getScore() + " " + bonusNum);
+				if(swOp>=2){
 					human.setScore(human.getScore()*bonusNum);
-					System.out.println(human.getScore() + " " + bonusNum);
 				}
-				else if(sw==1){
-					System.out.println(human.getScore() + " " + bonusNum);
+				else {
 					human.setScore(human.getScore()/bonusNum);
-					System.out.println(human.getScore() + " " + bonusNum);
-
+					
 				}
-
 			}
 		});
-
 
 		this.add(backgroundLabel);
 	}
 
 	public void dialog(){ //이니셜 입력을 위한 다이얼로그 생성 함수
 		Image dialogImg = new ImageIcon("images/dialogIcon.PNG").getImage().getScaledInstance(51, 51, 0);
-		userId = (String) JOptionPane.showInputDialog(null, human.getScore() + "점, 아이디를 입력하세요!", "게임 종료", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
+		userId = (String) JOptionPane.showInputDialog(null, human.getScore() + "점, 이니셜을 입력하세요!", 
+				"게임 종료", JOptionPane.PLAIN_MESSAGE , new ImageIcon(dialogImg), null, "");
 		
 		//스코어 객체에 정보 저장
 		s.setScore(human.getScore());	

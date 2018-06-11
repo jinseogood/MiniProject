@@ -29,15 +29,14 @@ public class GameView extends JPanel{
 		JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImg));
 
 		backgroundLabel.setSize(1138, 462);
-
 		
 		//캐릭터 움직이게 하는 클래스
 		HumanMove human=new HumanMove(this);
 		human.Move(mf, this);
 
 		//타이머, 점수, 아이템 출력 기능을 가진 클래스
-		Thread timer=new Timer_Item(mf,this, human, s);
-		timer.start();
+		Thread timer_item=new Timer_Item(mf,this, human, s);
+		timer_item.start();
 
 		this.add(backgroundLabel);
 

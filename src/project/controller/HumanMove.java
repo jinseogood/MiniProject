@@ -16,10 +16,8 @@ public class HumanMove {
 	private int score=0;
 	private int playerX=530; 	//캐릭터 초기 시작 위치
 	private int playerY=330;
-
 	
 	public HumanMove(JPanel panel){
-		
 		Image playerImg=new ImageIcon("images/player.gif").getImage().getScaledInstance(90, 80, 0);
 		playerLabel=new JLabel(new ImageIcon(playerImg));
 		
@@ -43,8 +41,6 @@ public class HumanMove {
 	public void setScore(int score) {
 		this.score = score;
 	}
-
-	
 	
 	//좌표 변경(캐릭터 움직임) 메소드 - 키보드 이벤트
 	public void Move(MainFrame mf, JPanel panel){		
