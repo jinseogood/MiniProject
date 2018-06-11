@@ -30,19 +30,23 @@ import project.view.Bonus;
 import project.view.MainFrame;
 import project.view.RankingView;
 
-public class Timer extends Thread{
+public class Timer_Item extends Thread{
 	private MainFrame mf;
 	private JPanel panel;
 	private JLabel scoreField, stageLabel;
 	private HumanMove human;
 	private Score s;
+	//op : 폭탄과 돈이 떨어질 확률을 결정하는 변수, 
+	//op2 : 돈과 폭탄 중 세부 아이템의 확률을 결정하는 변수,
+	//op3 : 랜덤박스를 먹었을 시 금괴와 빨강 폭탄 중 어느걸 떨어뜨릴지 확률을 결정하는 변수
 	private int op,op2,op3=(int)(Math.random()*2)+1;;
 	private boolean randomSW;
-	private Thread[] items=new Item[150];
-	private Thread[] itemsGold=new Item[150];
-	private Thread[] itemsBomb=new Item[150];
+	//떨어지는 아이템을 미리 만들어 저장하기 위해 선언된 쓰레드
+	private Thread[] items=new Item[132];
+	private Thread[] itemsGold=new Item[132];
+	private Thread[] itemsBomb=new Item[132];
 
-	public Timer(MainFrame mf, JPanel panel, HumanMove human, Score s){
+	public Timer_Item(MainFrame mf, JPanel panel, HumanMove human, Score s){
 		this.mf = mf;
 		this.panel = panel;
 		this.human=human;
@@ -75,10 +79,10 @@ public class Timer extends Thread{
 	public void setRandomSW(boolean randomSW) {
 		this.randomSW = randomSW;
 	}
-	
+
 	//화면에 뿌려줄 아이템을 만들어 놓는 함수
 	public void makeItem(){
-		for(int i=0;i<150;i++){
+		for(int i=0;i<132;i++){
 			op = (int)(Math.random()*4);
 			switch(op){
 			case 0:
@@ -87,7 +91,6 @@ public class Timer extends Thread{
 				op2 = (int)(Math.random()*1000);
 				if(op2>500){
 					items[i]=new Coin(panel, human);
-					//items[i]=new RandomBox(panel, human, this);
 				}else if(op2>200){
 					items[i]=new Money(panel, human);
 				}else if(op2>80){
@@ -115,7 +118,7 @@ public class Timer extends Thread{
 			}
 		}
 	}
-	
+
 	//랜덤 박스 먹었을 때 나올 금괴, 폭탄을 미리 만들어 놓음
 	public void changeItem(){
 		for(int i=0;i<itemsGold.length;i++){
@@ -127,7 +130,7 @@ public class Timer extends Thread{
 	@Override
 	public void run() {
 		int count=0;
-		for(int i = 0; i < 150; i++){
+		for(int i = 0; i < 132; i++){
 			if(randomSW){	//랜덤 박스를 먹었을 때 if문 진입
 				count++;
 				if(op3==2){ 	
@@ -151,17 +154,14 @@ public class Timer extends Thread{
 				items[i].start();
 			}
 			scoreField.setText(Integer.toString(human.getScore()));
-			if(i==7){ //게임 시작 후 GAME START 라벨을 안 보이게 함
+			if(i==7){ //게임 시작 후 START 라벨을 안 보이게 함
 				stageLabel.setVisible(false);
 			}
-			if(i==149){ //주어진 시간 종료 후 스레드 종료
-				for(int k=134;k<150;k++){
-					try {
-						Thread.sleep(1);
-						items[k].interrupt();
-					} catch (InterruptedException e) {
-						//e.printStackTrace();
-					}
+			if(i==129){ //주어진 시간 종료 후 스레드 종료
+				try {
+					this.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 			}
 			try {
@@ -172,8 +172,9 @@ public class Timer extends Thread{
 
 		}
 
+		//현재 게임 패널에 있는 모든 컴포넌트들을 제거
 		panel.removeAll();
-		
+
 		//보너스 페이지로 전환
 		mf.remove(panel);
 		panel=new Bonus(mf, human, s);

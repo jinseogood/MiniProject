@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import project.controller.HumanMove;
-import project.controller.Timer;
 
 public class Diamond extends Item implements Runnable{
 	private JPanel panel;

@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import project.controller.HumanMove;
-import project.controller.Timer;
+import project.controller.Timer_Item;
 import project.model.dao.Score;
 
 public class GameView extends JPanel{
@@ -35,7 +35,8 @@ public class GameView extends JPanel{
 		HumanMove human=new HumanMove(this);
 		human.Move(mf, this);
 
-		Thread timer=new Timer(mf,this, human, s);
+		//타이머, 점수, 아이템 출력 기능을 가진 클래스
+		Thread timer=new Timer_Item(mf,this, human, s);
 		timer.start();
 
 		this.add(backgroundLabel);
