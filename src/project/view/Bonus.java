@@ -110,7 +110,7 @@ public class Bonus extends JPanel{
 				backgroundLabel.remove(boxNum);
 				dialogLabel.setVisible(true);
 
-				if(swOp == 2){
+				if(swOp >= 2){
 					swNum=(int)(Math.random()*9);
 					switch(swNum){
 					case 0:
